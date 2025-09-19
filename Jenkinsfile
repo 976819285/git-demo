@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER_REGISTRY_PWD = credentials('jenkins-docker-registry-password')
+        BRANCH_NAME ="${GIT_BRANCH.split("/")[-1]}"
+    }
+
     stages {
         stage('Build') {
             steps {
